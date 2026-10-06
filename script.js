@@ -18,7 +18,7 @@ function pointCreate(i,s){const a=s*TWO,r=1.1+((i%10)/10)*2.8;return[Math.cos(a)
 function pointSpace(i,s){const a=s*TWO,r=1.5+((i%16)/16)*3.4;return[Math.cos(a)*r,Math.sin(a*2+i)*.5,Math.sin(a)*r]}
 function pointReveal(i,s){const a=s*TWO,r=.35+((i%24)/24)*2.05;return[Math.cos(a)*r,Math.sin(a)*r*.9,Math.sin(a)*r]}
 const targets=[pointSignal,pointInput,pointNetwork,pointCore,pointCreate,pointSpace,pointReveal];
-function wire(g,geo,color=0xe9f5ff,opacity=.8){g.add(new THREE.LineSegments(new THREE.WireframeGeometry(geo),new THREE.LineBasicMaterial({color,transparent:true,opacity})))}
+function wire(g,geo,color=0xe9f5ff,opacity=.8){const l=new THREE.LineSegments(new THREE.WireframeGeometry(geo),new THREE.LineBasicMaterial({color,transparent:true,opacity}));g.add(l);return l}
 function glow(g,geo,color=0x70b9ff,opacity=.1){const m=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({color,transparent:true,opacity,side:THREE.DoubleSide}));g.add(m);return m}
 function line(g,a,b,color=0x9fd6ff,opacity=.45){const geo=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...a),new THREE.Vector3(...b)]);g.add(new THREE.Line(geo,new THREE.LineBasicMaterial({color,transparent:true,opacity})))}
 function phone(g){wire(g,new THREE.BoxGeometry(2.05,3.8,.24),0xf0f7ff,.92);wire(g,new THREE.BoxGeometry(1.75,3.1,.04),0x76baff,.5);for(let i=0;i<5;i++){const q=new THREE.Mesh(new THREE.BoxGeometry(.35,.08,.04),new THREE.MeshBasicMaterial({color:0xb9e2ff,transparent:true,opacity:.7}));q.position.set(-.6+i*.3,-1.1,.16);g.add(q)}}
