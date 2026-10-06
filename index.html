@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>NEXA — 3D Experience</title>
+
+    <meta
+        name="description"
+        content="NEXA — Interactive 3D digital experience."
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Three.js -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+
+<body>
+
+    <div id="experience">
+
+        <canvas id="scene"></canvas>
+
+        <!-- Opening UI -->
+        <div id="ui">
+
+            <div class="top-bar">
+                <div class="brand">NEXA</div>
+
+                <div class="scene-counter">
+                    <span id="sceneNumber">01</span>
+                    <span>/</span>
+                    <span>07</span>
+                </div>
+            </div>
+
+            <div class="center-message">
+                <div class="eyebrow" id="eyebrow">
+                    DIGITAL INTELLIGENCE
+                </div>
+
+                <h1 id="title">NEXA CORE</h1>
+
+                <p id="description">
+                    An intelligence taking shape.
+                </p>
+            </div>
+
+            <div class="bottom-bar">
+
+                <div class="progress">
+                    <div id="progressFill"></div>
+                </div>
+
+                <div class="hint" id="hint">
+                    MOVE YOUR CURSOR
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Intro -->
+        <div id="intro">
+            <div class="intro-small">ENTER THE</div>
+            <div class="intro-title">NEXA</div>
+            <div class="intro-subtitle">3D EXPERIENCE</div>
+
+            <button id="startButton">
+                ENTER EXPERIENCE
+            </button>
+        </div>
+
+        <!-- Scene transition -->
+        <div id="flash"></div>
+
+        <!-- Mobile touch hint -->
+        <div id="touchHint">
+            DRAG YOUR FINGER
+        </div>
+
+    </div>
+
+    <script type="module" src="script.js"></script>
+
+</body>
+  </html>
