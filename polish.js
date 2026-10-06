@@ -6,6 +6,10 @@
   const sceneNames = ['CORE','GALAXY','DNA','ENERGY','ENTITY','WORLD','FINAL'];
   const root = document.documentElement;
   let last = '';
+  document.getElementById('enterButton')?.addEventListener('click', () => {
+    const hint = document.getElementById('mobileHint');
+    if (hint) hint.textContent = 'SWIPE TO NEXT SCENE';
+  });
   addEventListener('pointermove', e => {
     const x = e.clientX / innerWidth, y = e.clientY / innerHeight;
     root.style.setProperty('--mx', `${x * 100}%`);
