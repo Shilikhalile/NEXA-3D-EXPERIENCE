@@ -2,98 +2,116 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NEXA — 3D Experience</title>
-
-    <meta
-        name="description"
-        content="NEXA — Interactive 3D digital experience."
-    >
+    <title>NEXA — 3D Interactive Experience</title>
 
     <link rel="stylesheet" href="style.css">
-
-    <!-- Three.js -->
-    <script type="importmap">
-    {
-        "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
-            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"
-        }
-    }
-    </script>
 </head>
 
 <body>
 
-    <div id="experience">
+    <canvas id="canvas"></canvas>
 
-        <canvas id="scene"></canvas>
+    <!-- INTRO -->
+    <section id="intro">
+        <div class="intro-grid"></div>
 
-        <!-- Opening UI -->
-        <div id="ui">
+        <div class="intro-content">
+            <div class="tiny-label">NEXA / DIGITAL EXPERIENCE</div>
 
-            <div class="top-bar">
-                <div class="brand">NEXA</div>
+            <h1>NEXA</h1>
 
-                <div class="scene-counter">
-                    <span id="sceneNumber">01</span>
-                    <span>/</span>
-                    <span>07</span>
-                </div>
-            </div>
+            <div class="intro-line"></div>
 
-            <div class="center-message">
-                <div class="eyebrow" id="eyebrow">
-                    DIGITAL INTELLIGENCE
-                </div>
+            <p>
+                AN INTERACTIVE 3D SYSTEM
+            </p>
 
-                <h1 id="title">NEXA CORE</h1>
-
-                <p id="description">
-                    An intelligence taking shape.
-                </p>
-            </div>
-
-            <div class="bottom-bar">
-
-                <div class="progress">
-                    <div id="progressFill"></div>
-                </div>
-
-                <div class="hint" id="hint">
-                    MOVE YOUR CURSOR
-                </div>
-
-            </div>
-
-        </div>
-
-        <!-- Intro -->
-        <div id="intro">
-            <div class="intro-small">ENTER THE</div>
-            <div class="intro-title">NEXA</div>
-            <div class="intro-subtitle">3D EXPERIENCE</div>
-
-            <button id="startButton">
+            <button id="enterButton">
                 ENTER EXPERIENCE
             </button>
         </div>
 
-        <!-- Scene transition -->
-        <div id="flash"></div>
+        <div class="intro-corner top-left">
+            SYSTEM / 001
+        </div>
 
-        <!-- Mobile touch hint -->
-        <div id="touchHint">
-            DRAG YOUR FINGER
+        <div class="intro-corner bottom-right">
+            WEBGL / ONLINE
+        </div>
+    </section>
+
+
+    <!-- HUD -->
+    <div id="hud">
+
+        <div class="hud-top">
+
+            <div class="brand">
+                <span class="brand-dot"></span>
+                NEXA
+            </div>
+
+            <div class="system-status">
+                SYSTEM ONLINE
+            </div>
+
+        </div>
+
+
+        <div class="scene-info">
+
+            <div class="scene-number">
+                01 / 07
+            </div>
+
+            <div class="scene-title">
+                DIGITAL IGLOO
+            </div>
+
+            <div class="scene-description">
+                GEOMETRIC STRUCTURE // INITIALIZATION
+            </div>
+
+        </div>
+
+
+        <div class="technical-info">
+
+            <div>OBJECT&nbsp;&nbsp; NEXA-CORE</div>
+            <div>MODE&nbsp;&nbsp;&nbsp;&nbsp; WEBGL</div>
+            <div>FIELD&nbsp;&nbsp;&nbsp; ACTIVE</div>
+            <div>INPUT&nbsp;&nbsp;&nbsp; MOUSE</div>
+
+        </div>
+
+
+        <div class="progress-container">
+            <div class="progress"></div>
+        </div>
+
+
+        <div class="bottom-hint">
+            MOVE YOUR CURSOR TO INTERACT
         </div>
 
     </div>
 
-    <script type="module" src="script.js"></script>
+
+    <!-- Transition flash -->
+    <div id="flash"></div>
+
+
+    <!-- Mobile hint -->
+    <div id="mobileHint">
+        DRAG TO EXPLORE
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <script src="script.js"></script>
 
 </body>
-  </html>
+</html>
