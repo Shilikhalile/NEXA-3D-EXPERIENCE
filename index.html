@@ -1,132 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>NEXA — 3D Interactive Experience</title>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>NEXA AI Hub</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-    <canvas id="canvas"></canvas>
-
-    <div id="sceneVisual" aria-hidden="true">
-        <img id="sceneImage" src="assets/scene_01_signal.jpg" alt="">
-    </div>
-
-    <!-- INTRO -->
-    <section id="intro">
-        <div class="intro-grid"></div>
-
-        <div class="intro-content">
-            <div class="tiny-label">NEXA / DIGITAL EXPERIENCE</div>
-
-            <h1>NEXA</h1>
-
-            <div class="intro-line"></div>
-
-            <p>
-                AN INTERACTIVE 3D SYSTEM
-            </p>
-
-            <button id="enterButton">
-                ENTER EXPERIENCE
-            </button>
-        </div>
-
-        <div class="intro-corner top-left">
-            SYSTEM / 001
-        </div>
-
-        <div class="intro-corner bottom-right">
-            WEBGL / ONLINE
-        </div>
-    </section>
-
-
-    <!-- HUD -->
-    <div id="hud">
-
-        <div class="hud-top">
-
-            <div class="brand">
-                <span class="brand-dot"></span>
-                NEXA
-            </div>
-
-            <div class="system-status">
-                SYSTEM ONLINE
-            </div>
-
-        </div>
-
-
-        <div class="scene-info">
-
-            <div class="scene-number">
-                01 / 07
-            </div>
-
-            <div class="scene-title">
-                DIGITAL IGLOO
-            </div>
-
-            <div class="scene-description">
-                GEOMETRIC STRUCTURE // INITIALIZATION
-            </div>
-
-        </div>
-
-
-        <div class="technical-info">
-
-            <div>OBJECT&nbsp;&nbsp; NEXA-CORE</div>
-            <div>MODE&nbsp;&nbsp;&nbsp;&nbsp; WEBGL</div>
-            <div>FIELD&nbsp;&nbsp;&nbsp; ACTIVE</div>
-            <div>INPUT&nbsp;&nbsp;&nbsp; MOUSE</div>
-
-        </div>
-
-        <div class="scene-rail" aria-hidden="true">
-            <span class="rail-line active"></span>
-            <span class="rail-line"></span>
-            <span class="rail-line"></span>
-            <span class="rail-line"></span>
-            <span class="rail-line"></span>
-            <span class="rail-line"></span>
-            <span class="rail-line"></span>
-        </div>
-
-
-        <div class="progress-container">
-            <div class="progress"></div>
-        </div>
-
-
-        <div class="bottom-hint">
-            MOVE TO EXPLORE  ·  PUSH TO ADVANCE
-        </div>
-
-    </div>
-
-
-    <!-- Transition flash -->
-    <div id="flash"></div>
-
-
-    <!-- Mobile hint -->
-        <div id="mobileHint">
-        MOVE TO EXPLORE  ·  SWIPE TO ADVANCE
-    </div>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-    <script src="script.js"></script>
-    <script src="polish.js"></script>
-
+  <main id="hub" aria-label="NEXA AI Hub">
+    <div class="image-wrap"><img id="hubImage" src="assets/hub_01_command.jpg" alt="NEXA AI Hub"></div>
+    <div class="shade"></div>
+    <header class="brand"><span class="brand-light"></span><span>NEXA</span></header>
+    <div id="intro" class="intro"><div class="intro-mark">NEXA</div><button id="enterButton">ENTER</button></div>
+    <div class="gesture"><span class="gesture-line"></span><span>SWIPE</span></div>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>
