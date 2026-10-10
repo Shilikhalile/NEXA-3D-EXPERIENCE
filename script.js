@@ -7,6 +7,9 @@ addEventListener('pointermove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/i
 addEventListener('pointerdown',e=>{if(ready)pointer={x:e.clientX,y:e.clientY}});
 addEventListener('pointermove',e=>{if(!pointer||!ready)return;const dy=e.clientY-pointer.y,dx=e.clientX-pointer.x;if(Math.abs(dy)>135&&Math.abs(dy)>Math.abs(dx)){advance(dy<0?1:-1);pointer=null}});
 addEventListener('pointerup',()=>{pointer=null});
+addEventListener('touchstart',e=>{if(ready&&e.touches[0])pointer={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});
+addEventListener('touchmove',e=>{if(!pointer||!ready||!e.touches[0])return;const dy=e.touches[0].clientY-pointer.y,dx=e.touches[0].clientX-pointer.x;if(Math.abs(dy)>120&&Math.abs(dy)>Math.abs(dx)){e.preventDefault();advance(dy<0?1:-1);pointer=null}},{passive:false});
+addEventListener('touchend',()=>{pointer=null},{passive:true});
 addEventListener('wheel',e=>{if(!ready)return;wheelEnergy+=e.deltaY;clearTimeout(wheelTimer);wheelTimer=setTimeout(()=>wheelEnergy=0,420);if(Math.abs(wheelEnergy)>=680){const direction=wheelEnergy>0?1:-1;wheelEnergy=0;advance(direction)}},{passive:true});
 addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight')advance(1);if(e.key==='ArrowUp'||e.key==='ArrowLeft')advance(-1)});
 enter.addEventListener('click',()=>{ready=true;intro.classList.add('hidden');gesture.classList.add('show');img.classList.add('loaded')});
