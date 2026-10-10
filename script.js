@@ -1,16 +1,18 @@
-const images=['assets/hub_01_command.jpg','assets/hub_02_vision.jpg','assets/hub_03_voice.jpg','assets/hub_04_build.jpg','assets/hub_05_automate.jpg','assets/hub_06_ecosystem.jpg','assets/hub_07_reveal.jpg'];
-const img=document.getElementById('hubImage'),intro=document.getElementById('intro'),enter=document.getElementById('enterButton'),gesture=document.querySelector('.gesture');
+const scenes=[
+ {image:'assets/film_01_discover.jpg',kicker:'DISCOVER NEXA',title:'THE FUTURE OF INTELLIGENCE',text:'A luminous core emerges from the dark — knowledge, creativity and computation becoming one.'},
+ {image:'assets/film_02_pc.jpg',kicker:'NEXA LAUNCHES',title:'INTELLIGENCE ON YOUR DESKTOP',text:'A real digital assistant, opening on a real computer. One space for the work ahead.'},
+ {image:'assets/film_03_interface.jpg',kicker:'EXPLORE THE INTERFACE',title:'EVERY WORKFLOW, TOGETHER',text:'Study, research, images, code, canvas and files — organized inside one calm workspace.'},
+ {image:'assets/film_04_capabilities.jpg',kicker:'ONE AI / MANY POSSIBILITIES',title:'FROM THOUGHT TO CREATION',text:'One core coordinates research, learning, code, documents and creative output.'},
+ {image:'assets/film_05_webgl.jpg',kicker:'ENTER THE 3D EXPERIENCE',title:'A LIVING DIGITAL WORLD',text:'Move through a responsive WebGL environment where particles, geometry and light react to you.'},
+ {image:'assets/film_06_reveal.jpg',kicker:'NEXA',title:'ONE SPACE. INFINITE POSSIBILITIES.',text:''}
+];
+const img=document.getElementById('filmImage'),intro=document.getElementById('intro'),enter=document.getElementById('enterButton'),caption=document.getElementById('caption'),kicker=caption.querySelector('.caption-kicker'),title=caption.querySelector('h1'),text=caption.querySelector('p'),tools=document.getElementById('tools'),hud=document.getElementById('hud'),finalLine=document.getElementById('finalLine'),gesture=document.querySelector('.gesture');
 let current=0,ready=false,pointer=null,wheelEnergy=0,wheelTimer=null,changing=false;
-function load(index){if(index<0||index>=images.length||index===current||changing)return;changing=true;const next=new Image();next.onload=()=>{img.classList.remove('loaded');setTimeout(()=>{img.src=images[index];img.onload=()=>img.classList.add('loaded');current=index;changing=false},180)};next.src=images[index]}
-function advance(direction){load(current+direction)}
-addEventListener('pointermove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;document.documentElement.style.setProperty('--x',`${x*3.2}deg`);document.documentElement.style.setProperty('--y',`${-y*2.2}deg`);document.documentElement.style.setProperty('--mx',`${e.clientX/innerWidth*100}%`);document.documentElement.style.setProperty('--my',`${e.clientY/innerHeight*100}%`)});
-addEventListener('pointerdown',e=>{if(ready)pointer={x:e.clientX,y:e.clientY}});
-addEventListener('pointermove',e=>{if(!pointer||!ready)return;const dy=e.clientY-pointer.y,dx=e.clientX-pointer.x;if(Math.abs(dy)>135&&Math.abs(dy)>Math.abs(dx)){advance(dy<0?1:-1);pointer=null}});
-addEventListener('pointerup',()=>{pointer=null});
-addEventListener('touchstart',e=>{if(ready&&e.touches[0])pointer={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});
-addEventListener('touchmove',e=>{if(!pointer||!ready||!e.touches[0])return;const dy=e.touches[0].clientY-pointer.y,dx=e.touches[0].clientX-pointer.x;if(Math.abs(dy)>120&&Math.abs(dy)>Math.abs(dx)){e.preventDefault();advance(dy<0?1:-1);pointer=null}},{passive:false});
-addEventListener('touchend',()=>{pointer=null},{passive:true});
-addEventListener('wheel',e=>{if(!ready)return;wheelEnergy+=e.deltaY;clearTimeout(wheelTimer);wheelTimer=setTimeout(()=>wheelEnergy=0,420);if(Math.abs(wheelEnergy)>=680){const direction=wheelEnergy>0?1:-1;wheelEnergy=0;advance(direction)}},{passive:true});
-addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight')advance(1);if(e.key==='ArrowUp'||e.key==='ArrowLeft')advance(-1)});
-enter.addEventListener('click',()=>{ready=true;intro.classList.add('hidden');gesture.classList.add('show');img.classList.add('loaded')});
-img.onload=()=>img.classList.add('loaded');img.src=images[0];
+function render(n){const s=scenes[n];caption.classList.remove('show');tools.classList.remove('show');hud.classList.remove('show');finalLine.classList.remove('show');const next=new Image();next.onload=()=>{img.classList.remove('loaded');setTimeout(()=>{img.src=s.image;img.onload=()=>img.classList.add('loaded');kicker.textContent=s.kicker;title.textContent=s.title;text.textContent=s.text;caption.classList.add('show');if(n===2)tools.classList.add('show');if(n===4)hud.classList.add('show');if(n===5){caption.classList.remove('show');finalLine.classList.add('show')}changing=false},180)};next.src=s.image}
+function go(dir){const n=Math.max(0,Math.min(scenes.length-1,current+dir));if(n===current||changing)return;current=n;changing=true;render(n)}
+addEventListener('pointermove',e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;document.documentElement.style.setProperty('--x',`${x*3.2}deg`);document.documentElement.style.setProperty('--y',`${-y*2.2}deg`);document.documentElement.style.setProperty('--mx',`${e.clientX/innerWidth*100}%`);document.documentElement.style.setProperty('--my',`${e.clientY/innerHeight*100}%`);if(pointer&&ready){const dy=e.clientY-pointer.y,dx=e.clientX-pointer.x;if(Math.abs(dy)>125&&Math.abs(dy)>Math.abs(dx)){go(dy<0?1:-1);pointer=null}}});
+addEventListener('pointerdown',e=>{if(ready)pointer={x:e.clientX,y:e.clientY}});addEventListener('pointerup',()=>pointer=null);
+addEventListener('touchstart',e=>{if(ready&&e.touches[0])pointer={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});addEventListener('touchmove',e=>{if(!pointer||!e.touches[0])return;const dy=e.touches[0].clientY-pointer.y,dx=e.touches[0].clientX-pointer.x;if(Math.abs(dy)>115&&Math.abs(dy)>Math.abs(dx)){e.preventDefault();go(dy<0?1:-1);pointer=null}},{passive:false});addEventListener('touchend',()=>pointer=null,{passive:true});
+addEventListener('wheel',e=>{if(!ready)return;wheelEnergy+=e.deltaY;clearTimeout(wheelTimer);wheelTimer=setTimeout(()=>wheelEnergy=0,420);if(Math.abs(wheelEnergy)>=680){const d=wheelEnergy>0?1:-1;wheelEnergy=0;go(d)}},{passive:true});
+addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowRight')go(1);if(e.key==='ArrowUp'||e.key==='ArrowLeft')go(-1)});
+enter.addEventListener('click',()=>{ready=true;intro.classList.add('hidden');gesture.classList.add('show');render(0)});img.onload=()=>img.classList.add('loaded');img.src=scenes[0].image;
